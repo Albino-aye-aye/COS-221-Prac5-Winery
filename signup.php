@@ -66,7 +66,7 @@
             $stmt->execute();
             $stmt->close();
         }  else {
-            $stmt = $conn->prepare('INSERT INTO COS221_Winery (Country, Region, Name,) VALUES (?, ?, ?)');
+            $stmt = $conn->prepare('INSERT INTO COS221_Winery (Country, Region, Name) VALUES (?, ?, ?)');
             $stmt->bind_param('sss', $country, $region, $name);
             $stmt->execute();
             $stmt->close();
