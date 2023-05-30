@@ -2,11 +2,13 @@
     
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Retrieve the input values from the form
-        $name = trim($_POST['name']);
-        $surname = trim($_POST['surname']);
         $email = trim($_POST['email']);
         $password = trim($_POST['password']);
-        $email = trim($_POST['email']);
+        if(isset($_POST['name']) && isset($_POST['country']) && isset($_POST['region'])){
+            $name = trim($_POST['name']);
+            $country = trim($_POST['country']);
+            $region = trim($_POST['region']);
+        }
 
         // Check if the email already exists in the database
         $stmt = $conn->prepare('SELECT COUNT(*) FROM user WHERE email = ?');
@@ -55,7 +57,6 @@
         setcookie('APIkey', $apiKey, time() + 86400, '/');
 
         echo "<script>";
-        echo "var apiKey = \"$apiKey\";";
         echo "localStorage.setItem(\"apiKey\", apiKey);";
         echo " window.location.href = 'index.php';";
         echo "</script>";
