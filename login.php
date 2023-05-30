@@ -37,11 +37,12 @@
             $stmt = $conn->prepare('SELECT WinerID FROM COS221_User WHERE UserID = ?');
             $stmt->bind_param('s', $email);
             $stmt->execute();
+            $WineryID;
             $stmt->bind_result($WineryID);
             $stmt->fetch();
             $stmt->close();
             echo "<script>";
-            echo "localStorage.setItem(\"WineryID\",$WineryID);";
+            echo "localStorage.setItem('WineryID', '" . addslashes($WineryID) . "');";
             echo " window.location.href = 'wines.html';";
             echo "</script>";
             // header('Location: Compare.php?from=' . urlencode($current_page));
