@@ -48,3 +48,4 @@
         } else {
             $_SESSION['errors'] = 'Invalid';}
     }
+?>
