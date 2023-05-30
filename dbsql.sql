@@ -104,9 +104,3 @@ VALUES (2, 'password2', 'salt2', NULL);
 
 INSERT INTO COS221_User (UserID, Password, Salt, Verified)
 VALUES (3, 'password3', 'salt3', (SELECT Name FROM Winery WHERE WineryID = 3));
-
-
-show tables;
-select * from user;
-select * from winery; 
-select * from wines;
