@@ -1,13 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Sign Up</title>
+    <script
+        src="signup.js"
+    ></script>
 <style>
     .hidden {
         display: none;
     }
 </style>
 </head>
-<body>
+<bo<div class="container">
+    <h1>Sign Up</h1>
+    <form action="signup.php" method="post" id="NameForm">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+        <button type="submit">Sign Up</button>
+    </form>
+    <p>Already have an account? <a href="login.html">Log in</a></p>
+</div>
     <label for="showForm">Show Form</label>
     <input type="checkbox" id="showForm">
     <div id="formContainer" class="hidden">
@@ -19,19 +33,5 @@
         <input type="text" id="name">
         <input type="submit" value="Submit">
 </div>
-
-<script>
-    const checkbox = document.getElementById('showForm');
-    const formContainer = document.getElementById('formContainer');
-    
-    checkbox.addEventListener('change', function() {
-        if (checkbox.checked) {
-            formContainer.classList.remove('hidden');
-        } else {
-            formContainer.classList.add('hidden');
-        }
-    });
-
-</script>
 </body>
 </html>
