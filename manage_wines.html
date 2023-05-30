@@ -5,26 +5,39 @@
 </head>
 <body>
   <div>
-  <h1>Add New Wine</h1>
-  <form action="insert_wine.php" method="POST">
+    <h1>Add New Wine</h1>
+    <form action="manage_wines.php" method="POST">
 
-    <label for="wineName">Wine Name:</label>
-    <input type="text" id="wineName" name="wineName" required><br><br>
+      <label for="addWineName">Wine Name:</label>
+      <input type="text" id="addWineName" name="addWineName" required><br><br>
 
-    <label for="vinification">Vinification</label>
-    <input type="text" id="vinification" name="vinification" required><br><br>
+      <label for="addVinification">Vinification</label>
+      <input type="text" id="addVinification" name="addVinification" required><br><br>
 
-    <label for="appellation">Appellation</label>
-    <input type="text" id="appellation" name="appellation" required><br><br>
+      <label for="addAppellation">Appellation</label>
+      <input type="text" id="addAppellation" name="addAppellation" required><br><br>
 
-    <label for="vintage">Vintage</label>
-    <input type="number" id="vintage" name="vintage" required><br><br>
+      <label for="addVintage">Vintage</label>
+      <input type="number" id="addVintage" name="addVintage" required><br><br>
 
-    <label for="price">Price</label>
-    <input type="number" id="price" name="price" required><br><br>
+      <label for="addPrice">Price</label>
+      <input type="number" id="addPrice" name="addPrice" required><br><br>
 
-    <input type="submit" value="Insert Wine">
-  </form>
-</div>
+      <input type="submit" value="Insert Wine">
+    </form>
+  </div>
+
+  <div>
+    <h1>Remove Wine</h1>
+    <form action="manage_wines.php" method="POST">
+
+      <select id="removeWineName" name="removeWineName" required>
+        <option value="" disabled selected>Wine Name</option>
+      </select><br><br>
+
+      <input type="submit" value="Remove Wine">
+    </form>
+  </div>
+
 </body>
 </html>
