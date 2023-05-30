@@ -1,4 +1,4 @@
-// Alec's code
+// Alec and Aren's code
 // Get references to the form and its input fields
 window.onload = function() {
   const form = document.getElementById('signupForm');
