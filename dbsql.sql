@@ -1,12 +1,14 @@
+-- Create Winery table
 CREATE TABLE COS221_Winery (
-  WineryID INT PRIMARY KEY,
+  WineryID INT PRIMARY KEY AUTO_INCREMENT,
   Country VARCHAR(255) NOT NULL,
   Region VARCHAR(255) NOT NULL,
   Name VARCHAR(255) NOT NULL
 );
 
+-- Create Wines table
 CREATE TABLE COS221_Wines (
-  WineID INT PRIMARY KEY,
+  WineID INT PRIMARY KEY AUTO_INCREMENT,
   Name VARCHAR(255) NOT NULL,
   Vinification VARCHAR(255) NOT NULL,
   Appellation VARCHAR(255) NOT NULL,
@@ -21,12 +23,13 @@ CREATE TABLE COS221_User (
   UserID VARCHAR(255) PRIMARY KEY,
   Password VARCHAR(255) NOT NULL,
   Salt VARCHAR(255) NOT NULL,
-  WineryID INT NULL, -- Allow null values for WineryID
+  WineryID INT NULL,
   FOREIGN KEY (WineryID) REFERENCES COS221_Winery(WineryID)
 );
 
+-- Create Reviews table
 CREATE TABLE COS221_Reviews (
-  ReviewID INT PRIMARY KEY,
+  ReviewID INT PRIMARY KEY AUTO_INCREMENT,
   UserID VARCHAR(255),
   WineID INT,
   Points INT NOT NULL CHECK (Points >= 1 AND Points <= 100),
@@ -34,6 +37,7 @@ CREATE TABLE COS221_Reviews (
   FOREIGN KEY (UserID) REFERENCES COS221_User(UserID),
   FOREIGN KEY (WineID) REFERENCES COS221_Wines(WineID)
 );
+
 -- Insert into winery
 INSERT INTO COS221_Winery (WineryID, Country, Region, Name)
 VALUES (1, 'Spain', 'Catalonia', 'L''Arboc');
