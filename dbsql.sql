@@ -27,7 +27,7 @@ CREATE TABLE COS221_Reviews (
   ReviewID INT PRIMARY KEY,
   UserID INT,
   WineID INT,
-  Points INT NOT NULL CHECK (Rating >= 1 AND Rating <= 100),
+  Points INT NOT NULL CHECK (Points >= 1 AND Points <= 100),
   ReviewText VARCHAR(1000),
   FOREIGN KEY (UserID) REFERENCES COS221_User(UserID),
   FOREIGN KEY (WineID) REFERENCES COS221_Wines(WineID)
