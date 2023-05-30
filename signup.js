@@ -1,15 +1,4 @@
-//Aren's code
-    const checkbox = document.getElementById('showForm');
-    const formContainer = document.getElementById('formContainer');
-    
-    checkbox.addEventListener('change', function() {
-        if (checkbox.checked) {
-            formContainer.classList.remove('hidden');
-        } else {
-            formContainer.classList.add('hidden');
-        }
-    });
-//Alec's code
+// Alec's code
 // Get references to the form and its input fields
 const form = document.getElementById('NameForm');
 const emailInput = document.getElementById('email');
@@ -19,7 +8,7 @@ const emailRegex = /^(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|
 
 const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*[\W_]).{8,}$/;
 
-function validateForm(event) {
+function validateEmailPasswordForm(event) {
   // Prevent the form from submitting
   event.preventDefault();
 
@@ -36,9 +25,59 @@ function validateForm(event) {
   if (!passwordRegex.test(password)) {
     alert('Please enter a valid password. Passwords must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit, and one special character.');
     isValid = false;
-  } 
+  }
   if (isValid) {
     form.submit();
   }
 }
-form.addEventListener('submit', validateForm);
+
+// Get references to the country-region-name form and its input fields
+const nameForm = document.getElementById('formContainer');
+const countryInput = document.getElementById('country');
+const regionInput = document.getElementById('region');
+const nameInput = document.getElementById('name');
+
+function validateNameForm(event) {
+  // Prevent the form from submitting
+  event.preventDefault();
+
+  // Get the input values
+  const country = countryInput.value.trim();
+  const region = regionInput.value.trim();
+  const name = nameInput.value.trim();
+
+  // Validate the input values
+  let isValid = true;
+  if (!country) {
+    alert('Please enter a country.');
+    isValid = false;
+  }
+  if (!region) {
+    alert('Please enter a region.');
+    isValid = false;
+  }
+  if (!name) {
+    alert('Please enter a name.');
+    isValid = false;
+  }
+  if (isValid) {
+    // Perform the desired action for the country-region-name form
+    // e.g., submit the form or trigger an AJAX request
+  }
+}
+
+// Add event listeners for each form
+form.addEventListener('submit', validateEmailPasswordForm);
+nameForm.addEventListener('submit', validateNameForm);
+
+// Show/hide form based on checkbox state
+const checkbox = document.getElementById('showForm');
+const formContainer = document.getElementById('formContainer');
+
+checkbox.addEventListener('change', function() {
+  if (checkbox.checked) {
+    formContainer.classList.remove('hidden');
+  } else {
+    formContainer.classList.add('hidden');
+  }
+});
