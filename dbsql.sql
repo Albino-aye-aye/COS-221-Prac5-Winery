@@ -11,7 +11,6 @@ CREATE TABLE COS221_Wines (
   Vinification VARCHAR(255) NOT NULL,
   Appellation VARCHAR(255) NOT NULL,
   Vintage INT NOT NULL,
-  Points INT NOT NULL CHECK (Points >= 0),
   Price DECIMAL(10,2) NOT NULL CHECK (Price >= 0),
   WineryID INT,
   FOREIGN KEY (WineryID) REFERENCES COS221_Winery(WineryID)
@@ -28,7 +27,7 @@ CREATE TABLE COS221_Reviews (
   ReviewID INT PRIMARY KEY,
   UserID INT,
   WineID INT,
-  Rating INT NOT NULL CHECK (Rating >= 1 AND Rating <= 5),
+  Points INT NOT NULL CHECK (Rating >= 1 AND Rating <= 5),
   ReviewText VARCHAR(1000),
   FOREIGN KEY (UserID) REFERENCES COS221_User(UserID),
   FOREIGN KEY (WineID) REFERENCES COS221_Wines(WineID)
