@@ -8,7 +8,7 @@
 
 
         // Check if the email already exists in the database
-        $stmt = $conn->prepare('SELECT COUNT(*) FROM user WHERE UserID = ?');
+        $stmt = $conn->prepare('SELECT COUNT(*) FROM COS221_User WHERE UserID = ?');
         $stmt->bind_param('s', $email);
         $stmt->execute();
         $stmt->bind_result($count);
