@@ -97,10 +97,10 @@ VALUES (15, 'Furmint', 'Tokaji', 2003, 94, 764.00, 5);
 
 -- Insert into user 
 INSERT INTO COS221_User (UserID, Password, Salt, Verified)
-VALUES (1, 'password1', 'salt1', (SELECT Name FROM COS221_Winery WHERE WineryID = 1));
+VALUES (1, 'password1', 'salt1', (SELECT WineryID = 1 FROM COS221_Winery WHERE WineryID = 1));
 
 INSERT INTO COS221_User (UserID, Password, Salt, Verified)
 VALUES (2, 'password2', 'salt2', NULL);
 
 INSERT INTO COS221_User (UserID, Password, Salt, Verified)
-VALUES (3, 'password3', 'salt3', (SELECT Name FROM COS221_Winery WHERE WineryID = 3));
+VALUES (3, 'password3', 'salt3', (SELECT WineryID FROM COS221_Winery WHERE WineryID = 3));
