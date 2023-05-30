@@ -1,4 +1,5 @@
 //Aren's code
+
     const checkbox = document.getElementById('showForm');
     const formContainer = document.getElementById('formContainer');
     
@@ -9,6 +10,7 @@
             formContainer.classList.add('hidden');
         }
     });
+
 //Alec's code
 // Get references to the form and its input fields
 const form = document.getElementById('NameForm');
