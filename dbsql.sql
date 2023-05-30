@@ -1,14 +1,12 @@
--- Create Winery table
 CREATE TABLE COS221_Winery (
-  WineryID INT PRIMARY KEY AUTO_INCREMENT,
+  WineryID INT PRIMARY KEY,
   Country VARCHAR(255) NOT NULL,
   Region VARCHAR(255) NOT NULL,
   Name VARCHAR(255) NOT NULL
 );
 
--- Create Wines table
 CREATE TABLE COS221_Wines (
-  WineID INT PRIMARY KEY AUTO_INCREMENT,
+  WineID INT PRIMARY KEY,
   Name VARCHAR(255) NOT NULL,
   Vinification VARCHAR(255) NOT NULL,
   Appellation VARCHAR(255) NOT NULL,
@@ -20,24 +18,22 @@ CREATE TABLE COS221_Wines (
 
 -- Create User table
 CREATE TABLE COS221_User (
-  UserID VARCHAR(255) PRIMARY KEY,
+  UserID INT PRIMARY KEY,
   Password VARCHAR(255) NOT NULL,
   Salt VARCHAR(255) NOT NULL,
-  WineryID INT NULL,
+  WineryID INT NULL, -- Allow null values for WineryID
   FOREIGN KEY (WineryID) REFERENCES COS221_Winery(WineryID)
 );
 
--- Create Reviews table
 CREATE TABLE COS221_Reviews (
-  ReviewID INT PRIMARY KEY AUTO_INCREMENT,
-  UserID VARCHAR(255),
+  ReviewID INT PRIMARY KEY,
+  UserID INT,
   WineID INT,
   Points INT NOT NULL CHECK (Points >= 1 AND Points <= 100),
   ReviewText VARCHAR(1000),
   FOREIGN KEY (UserID) REFERENCES COS221_User(UserID),
   FOREIGN KEY (WineID) REFERENCES COS221_Wines(WineID)
 );
-
 -- Insert into winery
 INSERT INTO COS221_Winery (WineryID, Country, Region, Name)
 VALUES (1, 'Spain', 'Catalonia', 'L''Arboc');
@@ -102,19 +98,19 @@ VALUES ('O',15, 'Furmint', 'Tokaji', 2003, 764.00, 5);
 
 -- Insert into user
 INSERT INTO COS221_User (UserID, Password, Salt, WineryID)
-VALUES ('john.doe@example.com', 'password1', 'salt1', (SELECT WineryID FROM COS221_Winery WHERE WineryID = 1));
+VALUES (1, 'password1', 'salt1', (SELECT WineryID FROM COS221_Winery WHERE WineryID = 1));
 
 INSERT INTO COS221_User (UserID, Password, Salt, WineryID)
-VALUES ('jane.smith@gmail.com', 'password2', 'salt2', NULL);
+VALUES (2, 'password2', 'salt2', NULL);
 
 INSERT INTO COS221_User (UserID, Password, Salt, WineryID)
-VALUES ('david.wilson@company.com', 'password3', 'salt3', (SELECT WineryID FROM COS221_Winery WHERE WineryID = 3));
+VALUES (3, 'password3', 'salt3', (SELECT WineryID FROM COS221_Winery WHERE WineryID = 3));
 
 INSERT INTO COS221_User (UserID, Password, Salt, WineryID)
-VALUES ('emily.jones123@yahoo.co.uk', 'password4', 'salt4', (SELECT WineryID FROM COS221_Winery WHERE WineryID = 4));
+VALUES (4, 'password4', 'salt4', (SELECT WineryID FROM COS221_Winery WHERE WineryID = 4));
 
 INSERT INTO COS221_User (UserID, Password, Salt, WineryID)
-VALUES ('michael.brown34@hotmail.com', 'password5', 'salt5', (SELECT WineryID FROM COS221_Winery WHERE WineryID = 5));
+VALUES (5, 'password5', 'salt5', (SELECT WineryID FROM COS221_Winery WHERE WineryID = 5));
 
 -- update the price of the wine as the average of points in reviews
 DELIMITER $$
