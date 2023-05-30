@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Wine Management</title>
+</head>
+<body>
+  <div>
+  <h1>Add New Wine</h1>
+  <form action="insert_wine.php" method="POST">
+
+    <label for="wineName">Wine Name:</label>
+    <input type="text" id="wineName" name="wineName" required><br><br>
+
+    <label for="vinification">Vinification</label>
+    <input type="text" id="vinification" name="vinification" required><br><br>
+
+    <label for="appellation">Appellation</label>
+    <input type="text" id="appellation" name="appellation" required><br><br>
+
+    <label for="vintage">Vintage</label>
+    <input type="number" id="vintage" name="vintage" required><br><br>
+
+    <label for="price">Price</label>
+    <input type="number" id="price" name="price" required><br><br>
+
+    <input type="submit" value="Insert Wine">
+  </form>
+</div>
+</body>
+</html>
