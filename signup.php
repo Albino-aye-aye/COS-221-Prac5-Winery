@@ -1,5 +1,5 @@
 <?php
-    require 'config.php';
+    require_once 'config.php';
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Retrieve the input values from the form
         $isWinery = false;
