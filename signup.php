@@ -55,7 +55,7 @@
         $stmt->execute();
         $stmt->close();
         echo "<script>";
-        echo "localStorage.setItem(\"apiKey\", apiKey);";
+        echo "localStorage.setItem(\"WineryID\", NULL);";
         echo " window.location.href = 'index.php';";
         echo "</script>";
         }else {
