@@ -1,4 +1,39 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <title>Sign Up</title>
+<style>
+    .hidden {
+        display: none;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sign Up</h1>
+        <form action="signup.php" method="post" id="signupForm">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit" id = "signupBtn">Sign Up</button>
+            <br>
 
+            <label for="showForm">Are you a Winery?</label>
+            <input type="checkbox" id="showForm">
+            <div id="wineryContainer" class="hidden">
+                <label for="country">Country:</label>
+                <input type="text" id="country" name = "country" required>
+                <label for="region">Region:</label>
+                <input type="text" id="region" name = "region" required>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name = "name" required>
+                <button type="submit" value="Submit">Sign Up as Winery</button>
+            </div>
+        </form>
+        <p>Already have an account? <a href="login.html">Log in</a></p>
+    </div>
+
+    <script src="signup.js"></script>
+</body>
 </html>
