@@ -1,4 +1,3 @@
-
 CREATE TABLE COS221_Winery (
   WineryID INT PRIMARY KEY,
   Country VARCHAR(255) NOT NULL,
@@ -16,11 +15,13 @@ CREATE TABLE COS221_Wines (
   FOREIGN KEY (WineryID) REFERENCES COS221_Winery(WineryID)
 );
 
+-- Create User table
 CREATE TABLE COS221_User (
   UserID INT PRIMARY KEY,
   Password VARCHAR(255) NOT NULL,
   Salt VARCHAR(255) NOT NULL,
-  Verified boolean 
+  WineryID INT NULL, -- Allow null values for WineryID
+  FOREIGN KEY (WineryID) REFERENCES COS221_Winery(WineryID)
 );
 
 CREATE TABLE COS221_Reviews (
@@ -94,12 +95,44 @@ VALUES (14, 'Muscat', 'Tokaji', 2002, 20.00, 5);
 INSERT INTO COS221_Wines (WineID, Vinification, Appellation, Vintage, Price, WineryID)
 VALUES (15, 'Furmint', 'Tokaji', 2003, 764.00, 5);
 
--- Insert into user 
-INSERT INTO COS221_User (UserID, Password, Salt, Verified)
-VALUES (1, 'password1', 'salt1', (SELECT WineryID = 1 FROM COS221_Winery WHERE WineryID = 1));
+-- Insert into user
+INSERT INTO COS221_User (UserID, Password, Salt, WineryID)
+VALUES (1, 'password1', 'salt1', (SELECT WineryID FROM COS221_Winery WHERE WineryID = 1));
 
-INSERT INTO COS221_User (UserID, Password, Salt, Verified)
+INSERT INTO COS221_User (UserID, Password, Salt, WineryID)
 VALUES (2, 'password2', 'salt2', NULL);
 
-INSERT INTO COS221_User (UserID, Password, Salt, Verified)
+INSERT INTO COS221_User (UserID, Password, Salt, WineryID)
 VALUES (3, 'password3', 'salt3', (SELECT WineryID FROM COS221_Winery WHERE WineryID = 3));
+
+INSERT INTO COS221_User (UserID, Password, Salt, WineryID)
+VALUES (4, 'password4', 'salt4', (SELECT WineryID FROM COS221_Winery WHERE WineryID = 4));
+
+INSERT INTO COS221_User (UserID, Password, Salt, WineryID)
+VALUES (5, 'password5', 'salt5', (SELECT WineryID FROM COS221_Winery WHERE WineryID = 5));
+
+-- update the price of the wine as the average of points in reviews
+DELIMITER $$
+CREATE TRIGGER update_price_trigger AFTER INSERT ON COS221_Reviews
+FOR EACH ROW
+BEGIN
+  UPDATE COS221_Wines
+  SET Price = (
+    SELECT AVG(Points)*2 FROM COS221_Reviews WHERE WineID = NEW.WineID
+  )
+  WHERE WineID = NEW.WineID;
+END$$
+DELIMITER ;
+
+-- Create a separate trigger for UPDATE operation
+DELIMITER $$
+CREATE TRIGGER update_price_trigger_update AFTER UPDATE ON COS221_Reviews
+FOR EACH ROW
+BEGIN
+  UPDATE COS221_Wines
+  SET Price = (
+    SELECT AVG(Points)*2 FROM COS221_Reviews WHERE WineID = NEW.WineID
+  )
+  WHERE WineID = NEW.WineID;
+END$$
+DELIMITER ;
