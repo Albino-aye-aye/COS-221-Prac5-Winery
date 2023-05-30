@@ -1,6 +1,6 @@
 // Alec's code
 // Get references to the form and its input fields
-const form = document.getElementById('NameForm');
+const form = document.getElementById('signupForm');
 const emailInput = document.getElementById('email');
 const passwordInput = document.getElementById('password');
 
@@ -32,15 +32,11 @@ function validateEmailPasswordForm(event) {
 }
 
 // Get references to the country-region-name form and its input fields
-const nameForm = document.getElementById('formContainer');
 const countryInput = document.getElementById('country');
 const regionInput = document.getElementById('region');
 const nameInput = document.getElementById('name');
 
-function validateNameForm(event) {
-  // Prevent the form from submitting
-  event.preventDefault();
-
+if (checkbox.checked) {
   // Get the input values
   const country = countryInput.value.trim();
   const region = regionInput.value.trim();
@@ -62,17 +58,16 @@ function validateNameForm(event) {
   }
   if (isValid) {
     // Perform the desired action for the country-region-name form
-    // e.g., submit the form or trigger an AJAX request
+    
   }
 }
 
 // Add event listeners for each form
 form.addEventListener('submit', validateEmailPasswordForm);
-nameForm.addEventListener('submit', validateNameForm);
 
 // Show/hide form based on checkbox state
 const checkbox = document.getElementById('showForm');
-const formContainer = document.getElementById('formContainer');
+const formContainer = document.getElementById('wineryContainer');
 
 checkbox.addEventListener('change', function() {
   if (checkbox.checked) {
