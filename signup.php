@@ -5,12 +5,6 @@
         $isWinery = false;
         $email = trim($_POST['email']);
         $password = trim($_POST['password']);
-        if(isset($_POST['name']) && isset($_POST['country']) && isset($_POST['region'])){
-            $name = trim($_POST['name']);
-            $country = trim($_POST['country']);
-            $region = trim($_POST['region']);
-            $isWinery = true;
-        }
 
         // Check if the email already exists in the database
         $stmt = $conn->prepare('SELECT COUNT(*) FROM user WHERE email = ?');
@@ -39,6 +33,15 @@
             echo "Invalid password";
             exit;
         }   
+
+        if(isset($_POST['name']) && isset($_POST['country']) && isset($_POST['region'])){
+            $name = trim($_POST['name']);
+            $country = trim($_POST['country']);
+            $region = trim($_POST['region']);
+            $isWinery = true;
+        }
+
+        
         // Salt and hash the password
         $options2 = [
             'memory_cost' => PASSWORD_ARGON2_DEFAULT_MEMORY_COST,
@@ -48,7 +51,6 @@
         
         $salt = bin2hex(random_bytes(32));
         $hashedPassword = password_hash($password . $salt, PASSWORD_ARGON2ID, $options2);
-        $theme="light";
         // Create the user in the database
         $stmt = $conn->prepare('INSERT INTO user (name, surname, email, password, salt, APIkey, theme) VALUES (?, ?, ?, ?, ?, ?, ?)');
         $stmt->bind_param('sssssss', $name, $surname, $email, $hashedPassword, $salt, $apiKey,$theme);
