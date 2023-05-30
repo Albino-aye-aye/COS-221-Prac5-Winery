@@ -27,7 +27,7 @@ CREATE TABLE COS221_Reviews (
   ReviewID INT PRIMARY KEY,
   UserID INT,
   WineID INT,
-  Points INT NOT NULL CHECK (Rating >= 1 AND Rating <= 5),
+  Points INT NOT NULL CHECK (Rating >= 1 AND Rating <= 100),
   ReviewText VARCHAR(1000),
   FOREIGN KEY (UserID) REFERENCES COS221_User(UserID),
   FOREIGN KEY (WineID) REFERENCES COS221_Wines(WineID)
@@ -49,50 +49,50 @@ INSERT INTO COS221_Winery (WineryID, Country, Region, Name)
 VALUES (5, 'Hungary', 'Tokaji', 'Royal Tokaji');
 
 -- Insert data into Wines table
-INSERT INTO COS221_Wines (WineID, Vinification, Appellation, Vintage, Points, Price, WineryID)
-VALUES (1, 'Sparkling Blend', 'Catalonia', 1919, 88, 13.00, 1);
+INSERT INTO COS221_Wines (WineID, Vinification, Appellation, Vintage,Price, WineryID)
+VALUES (1, 'Sparkling Blend', 'Catalonia', 1919, 13.00, 1);
 
-INSERT INTO COS221_Wines (WineID, Vinification, Appellation, Vintage, Points, Price, WineryID)
-VALUES (2, 'Cabernet Sauvignon', 'Catalonia', 1999, 86, 55.00, 1);
+INSERT INTO COS221_Wines (WineID, Vinification, Appellation, Vintage,Price, WineryID)
+VALUES (2, 'Cabernet Sauvignon', 'Catalonia', 1999, 55.00, 1);
 
-INSERT INTO COS221_Wines (WineID, Vinification, Appellation, Vintage, Points, Price, WineryID)
-VALUES (3, 'Garnacha', 'Catalonia', 2001, 86, 10.00, 1);
+INSERT INTO COS221_Wines (WineID, Vinification, Appellation, Vintage,Price, WineryID)
+VALUES (3, 'Garnacha', 'Catalonia', 2001, 10.00, 1);
 
-INSERT INTO COS221_Wines (WineID, Vinification, Appellation, Vintage, Points, Price, WineryID)
-VALUES (4, 'Vernaccia', 'Tuscany', 1929, 87, 14.00, 2);
+INSERT INTO COS221_Wines (WineID, Vinification, Appellation, Vintage,Price, WineryID)
+VALUES (4, 'Vernaccia', 'Tuscany', 1929, 14.00, 2);
 
-INSERT INTO COS221_Wines (WineID, Vinification, Appellation, Vintage, Points, Price, WineryID)
-VALUES (5, 'White Blend', 'Tuscany', 1994, 93, 140.00, 2);
+INSERT INTO COS221_Wines (WineID, Vinification, Appellation, Vintage,Price, WineryID)
+VALUES (5, 'White Blend', 'Tuscany', 1994, 140.00, 2);
 
-INSERT INTO COS221_Wines (WineID, Vinification, Appellation, Vintage, Points, Price, WineryID)
-VALUES (6, 'Sangiovese', 'Tuscany', 1995, 84, 56.00, 2);
+INSERT INTO COS221_Wines (WineID, Vinification, Appellation, Vintage,Price, WineryID)
+VALUES (6, 'Sangiovese', 'Tuscany', 1995, 56.00, 2);
 
-INSERT INTO COS221_Wines (WineID, Vinification, Appellation, Vintage, Points, Price, WineryID)
-VALUES (7, 'Ramisco', 'Colares', 1934, 93, 495.00, 3);
+INSERT INTO COS221_Wines (WineID, Vinification, Appellation, Vintage,Price, WineryID)
+VALUES (7, 'Ramisco', 'Colares', 1934, 495.00, 3);
 
-INSERT INTO COS221_Wines (WineID, Vinification, Appellation, Vintage, Points, Price, WineryID)
-VALUES (8, 'Moscatel', 'Colares', 1963, 96, 400.00, 3);
+INSERT INTO COS221_Wines (WineID, Vinification, Appellation, Vintage,Price, WineryID)
+VALUES (8, 'Moscatel', 'Colares', 1963, 400.00, 3);
 
-INSERT INTO COS221_Wines (WineID, Vinification, Appellation, Vintage, Points, Price, WineryID)
-VALUES (9, 'Alvarinho', 'Colares', 2001, 86, 10.00, 3);
+INSERT INTO COS221_Wines (WineID, Vinification, Appellation, Vintage,Price, WineryID)
+VALUES (9, 'Alvarinho', 'Colares', 2001, 10.00, 3);
 
-INSERT INTO COS221_Wines (WineID, Vinification, Appellation, Vintage, Points, Price, WineryID)
-VALUES (10, 'Red Blend', 'Languedoc-Roussillon', 1945, 95, 350.00, 4);
+INSERT INTO COS221_Wines (WineID, Vinification, Appellation, Vintage,Price, WineryID)
+VALUES (10, 'Red Blend', 'Languedoc-Roussillon', 1945, 350.00, 4);
 
-INSERT INTO COS221_Wines (WineID, Vinification, Appellation, Vintage, Points, Price, WineryID)
-VALUES (11, 'Grenache', 'Languedoc-Roussillon', 2001, 89, 26.00, 4);
+INSERT INTO COS221_Wines (WineID, Vinification, Appellation, Vintage,Price, WineryID)
+VALUES (11, 'Grenache', 'Languedoc-Roussillon', 2001, 26.00, 4);
 
-INSERT INTO COS221_Wines (WineID, Vinification, Appellation, Vintage, Points, Price, WineryID)
-VALUES (12, 'Syrah', 'Languedoc-Roussillon', 2001, 82, 8.00, 4);
+INSERT INTO COS221_Wines (WineID, Vinification, Appellation, Vintage,Price, WineryID)
+VALUES (12, 'Syrah', 'Languedoc-Roussillon', 2001, 8.00, 4);
 
-INSERT INTO COS221_Wines (WineID, Vinification, Appellation, Vintage, Points, Price, WineryID)
-VALUES (13, 'White Blend', 'Tokaji', 1996, 91, 77.00, 5);
+INSERT INTO COS221_Wines (WineID, Vinification, Appellation, Vintage,Price, WineryID)
+VALUES (13, 'White Blend', 'Tokaji', 1996, 77.00, 5);
 
-INSERT INTO COS221_Wines (WineID, Vinification, Appellation, Vintage, Points, Price, WineryID)
-VALUES (14, 'Muscat', 'Tokaji', 2002, 87, 20.00, 5);
+INSERT INTO COS221_Wines (WineID, Vinification, Appellation, Vintage,Price, WineryID)
+VALUES (14, 'Muscat', 'Tokaji', 2002, 20.00, 5);
 
-INSERT INTO COS221_Wines (WineID, Vinification, Appellation, Vintage, Points, Price, WineryID)
-VALUES (15, 'Furmint', 'Tokaji', 2003, 94, 764.00, 5);
+INSERT INTO COS221_Wines (WineID, Vinification, Appellation, Vintage, Price, WineryID)
+VALUES (15, 'Furmint', 'Tokaji', 2003, 764.00, 5);
 
 -- Insert into user 
 INSERT INTO COS221_User (UserID, Password, Salt, Verified)
