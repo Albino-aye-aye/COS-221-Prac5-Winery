@@ -51,7 +51,7 @@
         // Create the user in the database
         if(!$isWinery){
         $stmt = $conn->prepare('INSERT INTO COS221_User (UserID, password, salt, WineryID) VALUES (?, ?, ?, ?)');
-        $stmt->bind_param('sssi',$email, $hashedPassword, $salt ,);
+        $stmt->bind_param('sssi', $email, $hashedPassword, $salt, NULL);
         $stmt->execute();
         $stmt->close();
         echo "<script>";
@@ -61,6 +61,9 @@
         }else {
             # code...
         }
+        echo "<script>";
+        echo " window.location.href = 'login.php';";
+        echo "</script>";
         $_SESSION['loggedin'] = true;
     }
 ?>
