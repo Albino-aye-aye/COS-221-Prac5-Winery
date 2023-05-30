@@ -1,4 +1,39 @@
 <!DOCTYPE html>
 <html>
+<head>
+<style>
+    .hidden {
+        display: none;
+    }
+</style>
+</head>
+<body>
+    <label for="showForm">Show Form</label>
+    <input type="checkbox" id="showForm">
+    <div id="formContainer" class="hidden">
+    <form>
+        <label for="country">Country:</label>
+        <input type="text" id="country">
+        <label for="region">Region:</label>
+        <input type="text" id="region">
+        <label for="name">Name:</label>
+        <input type="text" id="name">
+        <input type="submit" value="Submit">
+    </form>
+</div>
 
+<script>
+    const checkbox = document.getElementById('showForm');
+    const formContainer = document.getElementById('formContainer');
+    
+    checkbox.addEventListener('change', function() {
+        if (checkbox.checked) {
+            formContainer.classList.remove('hidden');
+        } else {
+            formContainer.classList.add('hidden');
+        }
+    });
+
+</script>
+</body>
 </html>
