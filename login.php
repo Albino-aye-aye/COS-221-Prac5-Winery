@@ -1,15 +1,14 @@
 <?php
     require 'config.php';
     session_start();
-//should function as a login page
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Inputed username and password
         $email = $_POST['email'];
         $password = $_POST['password'];
-        echo $email;
+
         // Retrieval of salt and password from the database
         // Salt
-        $stmt = $conn->prepare('SELECT salt FROM COS221_User WHERE UserID = ?');
+        $stmt = $conn->prepare('SELECT salt FROM user WHERE UserID = ?');
         $stmt->bind_param('s', $email);
         $stmt->execute();
         $stmt->bind_result($salt);
@@ -35,7 +34,7 @@
 
             $current_page = $_SERVER['PHP_SELF'];
             //check if winery is set
-            $stmt = $conn->prepare('SELECT WineryID FROM COS221_User WHERE UserID = ?');
+            $stmt = $conn->prepare('SELECT WinerID FROM COS221_User WHERE UserID = ?');
             $stmt->bind_param('s', $email);
             $stmt->execute();
             $WineryID;
@@ -44,7 +43,7 @@
             $stmt->close();
             echo "<script>";
             echo "localStorage.setItem('WineryID', '" . addslashes($WineryID) . "');";
-            echo " window.location.href = 'wines.php';";
+            echo " window.location.href = 'wines.html';";
             echo "</script>";
             // header('Location: Compare.php?from=' . urlencode($current_page));
             // exit();
