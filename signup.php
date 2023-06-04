@@ -19,8 +19,8 @@
             echo "Email already exists";
             exit;
         }
- 
-        if(isset($_POST['name']) && isset($_POST['country']) && isset($_POST['region']) && !empty($_POST['name']) || !empty($_POST['country']) || !empty($_POST['region'])){
+
+        if(isset($_POST['name']) && isset($_POST['country']) && isset($_POST['region'])){
             $name = trim($_POST['name']);
             $country = trim($_POST['country']);
             $region = trim($_POST['region']);
@@ -62,8 +62,7 @@
         // Create the user in the database
         if (!$isWinery) {
             $stmt = $conn->prepare('INSERT INTO COS221_User (UserID, password, salt, WineryID) VALUES (?, ?, ?, ?)');
-            $wineryID = NULL; // Assign NULL to a variable
-            $stmt->bind_param('sssi', $email, $hashedPassword, $salt, $wineryID); // Pass the variable as an argument
+            $stmt->bind_param('sssi', $email, $hashedPassword, $salt, NULL);
             $stmt->execute();
             $stmt->close();
         }  else {
@@ -84,7 +83,7 @@
             $stmt->close();
         }
         echo "<script>";
-        echo " window.location.href = 'login.html';";
+        echo " window.location.href = 'login.php';";
         echo "</script>";
         $_SESSION['loggedin'] = true;
     }
