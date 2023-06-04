@@ -1,6 +1,7 @@
 <?php
     require 'config.php';
     session_start();
+//should function as a login page
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Inputed username and password
         $email = $_POST['email'];
