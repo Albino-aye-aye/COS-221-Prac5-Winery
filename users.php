@@ -44,9 +44,9 @@ $db = Database::instance();
 <body>
     <h1>Wine Sublime</h1>
     <ul class="Navbar">
-    <li><a href="#" onclick="openTab(event, 'changeEmail')">Change UserID</a></li>
-    <li><a href="#" onclick="openTab(event, 'changePassword')">Change Password</a></li>
-    <li><a href="#" onclick="openTab(event, 'deleteAccount')">Delete Account</a></li>  
+    <li><a class= "userman" href="#" onclick="openTab(event, 'changeEmail')">Change UserID</a></li>
+    <li><a class= "userman" href="#" onclick="openTab(event, 'changePassword')">Change Password</a></li>
+    <li><a class= "userman" href="#" onclick="openTab(event, 'deleteAccount')">Delete Account</a></li>  
     </ul>
 
 
@@ -96,7 +96,7 @@ $db = Database::instance();
             for (i = 0; i < tabContent.length; i++) {
                 tabContent[i].style.display = "none";
             }
-            tabLinks = document.getElementsByTagName("a");
+            tabLinks = document.getElementsByClassName("userman");
             for (i = 0; i < tabLinks.length; i++) {
                 tabLinks[i].className = "";
             }
