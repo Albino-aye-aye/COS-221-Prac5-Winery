@@ -1,5 +1,6 @@
 <?php
-require "config.php";
+require_once("header.php");
+require_once("config.php");
 Class Database{
     public static function instance() {
         static $instance = null;
@@ -178,7 +179,7 @@ $db = Database::instance();
             //2.5 seconds after logging out the user is redirected to test.html. 
             //In the actual implementation this redirect to the sign up page made by Alec.
             setTimeout(function() {
-            window.location.href = 'test.php'; //test.php will be changed to the name of the sign up page. 
+            window.location.href = 'signup.html'; //test.php will be changed to the name of the sign up page. 
             //In this example test.php was in the same folder as the current file users.php
             }, 2500);
         }
