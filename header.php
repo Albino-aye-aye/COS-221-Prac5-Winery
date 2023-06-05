@@ -2,6 +2,8 @@
 session_start();
 include_once('config.php');
 include_once('style.css');
+// shits a little fucked delete if u want 
+// when u log in theres 2 log out buttons and the name link is plain text for some reason
 ?>
 
 <!DOCTYPE html>
