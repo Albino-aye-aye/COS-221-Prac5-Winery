@@ -1,5 +1,5 @@
 <?php
-    require 'config.php';
+    require_once("config.php");
     session_start();
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Inputed username and password
@@ -41,6 +41,7 @@
             $stmt->bind_result($WineryID);
             $stmt->fetch();
             $stmt->close();
+            setcookie('UserID', $email, time() + (86400 * 30), '/'); // Set cookie for 30 days
             echo "<script>";
             echo "localStorage.setItem('WineryID', '" . addslashes($WineryID) . "');";
             echo " window.location.href = 'wines.php';";
