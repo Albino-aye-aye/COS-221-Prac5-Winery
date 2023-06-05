@@ -1,0 +1,20 @@
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+
+.navItemContainer {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+}
+
+.navItemContainer > * {
+    flex: 1;
+    text-align: center;
+}
+
+.height {
+    height: 100px;
+}
