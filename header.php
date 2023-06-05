@@ -1,9 +1,6 @@
 <?php 
 session_start();
 include_once('config.php');
-include_once('style.css');
-// shits a little fucked delete if u want 
-// when u log in theres 2 log out buttons and the name link is plain text for some reason
 ?>
 
 <!DOCTYPE html>
@@ -20,11 +17,12 @@ include_once('style.css');
             var wineryID = localStorage.getItem('WineryID');
 
             if (wineryID && wineryID !== 'null') {
-                $('.nav-link[href="login.php"], .nav-link[href="signup.php"]').replaceWith('<li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>');
-                $('.nav-link[href="manage_wines_html.php"]').show();
+                $('.nav-link[href="login.php"]').replaceWith('<li class="nav-item"><a class="nav-link" href="users.php">User Management</a></li>');
+                $('.nav-link[href="signup.php"]').replaceWith('<li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>');
             } else {
-                $('.nav-link[href="logout.php"]').replaceWith('<li class="nav-item"><a class="nav-link" href="login.php">Login</a></li><li class="nav-item"><a class="nav-link" href="signup.php">Sign Up</a></li>');
-                $('.nav-link[href="manage_wines_html.php"]').hide();
+                $('.nav-link[href="login.php"]').replaceWith('<li class="nav-item"><a class="nav-link" href="users.php">User Management</a></li>');
+                $('.nav-link[href="signup.php"]').replaceWith('<li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>');
+                $('.nav-link[href="manage_wines_html.php"]').show(); // Add this line to make it visible
             }
         });
     </script>
@@ -33,7 +31,7 @@ include_once('style.css');
     <nav class="navbar navbar-expand navbar-dark bg-dark height">
         <ul class="navbar-nav mx-auto justify-content-center navItemContainer" id="navBar">
             <li class="nav-item"><a class="nav-link" href="wines.php">Wines</a></li>
-            <li class="nav-item" style="display: none;"><a class="nav-link" href="manage_wines_html.php">Manage Wines</a></li>
+            <li class="nav-item"><a class="nav-link" href="manage_wines_html.php">Manage Wines</a></li> <!-- Remove style="display: none;" -->
             <li class="nav-item"><a class="nav-link" href="search.php">Find a Wine</a></li>
             <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
             <li class="nav-item"><a class="nav-link" href="signup.php">Sign Up</a></li>

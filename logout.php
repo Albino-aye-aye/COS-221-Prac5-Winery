@@ -4,6 +4,7 @@
     include_once('config.php');
     $conn->close();
     setcookie('wineryID', '', time() - 3600, '/');
+    setcookie('UserID', '', time() - 3600, '/');
     session_unset();
     session_destroy();
 

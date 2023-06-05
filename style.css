@@ -1,7 +1,7 @@
 .nav-link {
-    color: white;
-    text-decoration: none;
-    font-size: 1.5rem;
+    color: white !important;
+    text-decoration: none !important;
+    font-size: 1.5rem !important;
 }
 
 .navItemContainer {

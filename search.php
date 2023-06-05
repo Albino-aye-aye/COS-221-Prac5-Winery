@@ -1,5 +1,6 @@
 <?php
-require "config.php";
+require_once("header.php");
+require_once("config.php");
 Class Database{
     public $conn;
     public static function instance() {
