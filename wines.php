@@ -39,6 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
 
 <!doctype html>
 <html>
+    <?php require_once("header.php"); ?>
     <head>
         <title>Wines</title>
     </head>

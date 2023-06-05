@@ -53,6 +53,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
 
     <body>
 
+    <?php require_once("header.php"); ?>
+
     <h2>Search Wineries by Country</h2>
     
     <form action="./search.php" method="POST">
