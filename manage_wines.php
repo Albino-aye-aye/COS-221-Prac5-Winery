@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bind_param('sssidi',  $addWineName, $addVinification, $addAppellation, $addVintage, $addPrice, $wineryID);
     $stmt->execute();
 
-    header('Location: manage_wines.html?message=' . urlencode('Wine added successfully!'));
+    header('Location: manage_wines_html.php?message=' . urlencode('Wine added successfully!'));
     exit();
 
     $stmt->close();
@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bind_param('ii', $removeWineID, $wineryID);
     $stmt->execute();
 
-    header('Location: manage_wines.html?message=' . urlencode('Wine removed successfully!'));
+    header('Location:  manage_wines_html.php?message=' . urlencode('Wine removed successfully!'));
     exit();
 
 
