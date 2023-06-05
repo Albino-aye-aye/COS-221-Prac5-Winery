@@ -1,19 +1,17 @@
 <?php
+require "config.php";
 Class Database{
-    public $conn;
     public static function instance() {
-        $servername = "wheatley.cs.up.ac.za";
-        $username = "u22570285";
-        $password = "O274QLGXCRJUQ73NVGWHPHPSO3CV3NDV";
-        $database = "u22570285";
         static $instance = null;
-        if($instance === null)
-            $instance = new Database($servername, $username, $password, $database);
-        return $instance; 
+        if ($instance === null) {
+            global $db_host, $db_user, $db_pass, $db_name;
+            $instance = new Database($db_host, $db_user, $db_pass, $db_name);
+        }
+        return $instance;
     }
 
-    private function __construct($servername, $username, $password, $database) {
-        $this->conn = new mysqli($servername, $username, $password, $database);
+    private function __construct($db_host, $db_user, $db_pass, $db_name) {
+        $this->conn =  $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
         if ($this->conn->connect_error){
             die("Database Connection Failed: ". $this->conn->connect_error);
         }
@@ -69,39 +67,6 @@ if (isset($_COOKIE["UserID"])) {
             echo "Failed to update password.";
         }
 
-        $stmt->close();
-    }
-
-    //Update the Winery
-    if (isset($_POST["winery"])) {
-        $newWinery = $_POST["winery"];
-    
-        $db = Database::instance();
-    
-        $sql = "SELECT WineryID FROM COS221_Winery WHERE Name = ?";
-        $stmt = $db->conn->prepare($sql);
-        $stmt->bind_param("s", $newWinery);
-        $stmt->execute();
-        $result = $stmt->get_result();
-    
-        if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-            $wineryID = $row["WineryID"];
-    
-            $sql = "UPDATE COS221_User SET WineryID = ? WHERE UserID = ?";
-            $stmt = $db->conn->prepare($sql);
-            $stmt->bind_param("ss", $wineryID, $userID);
-            $stmt->execute();
-    
-            if ($stmt->affected_rows > 0) {
-                echo "Winery updated successfully!";
-            } else {
-                echo "Failed to update winery.";
-            }
-        } else {
-            echo "Invalid winery selected.";
-        }
-    
         $stmt->close();
     }
     
