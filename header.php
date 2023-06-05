@@ -11,7 +11,7 @@
     <nav class="navbar navbar-expand navbar-dark bg-dark height">
         <ul class="navbar-nav mx-auto justify-content-center navItemContainer" id = "navBar">
             <li class="nav-item"><a class="nav-link" href="wines.php">Wines</a></li>
-            <li class="nav-item"><a class="nav-link" href="manage_wines.html">Manage Wines</a></li>
+            <li class="nav-item"><a class="nav-link" href= "manage_wines_html.php">Manage Wines</a></li>
             <li class="nav-item"><a class="nav-link" href="search.php">Find a Wine</a></li>
             <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
             <li class="nav-item"><a class="nav-link" href="signup.php">Sign Up</a></li>
