@@ -79,13 +79,38 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
                 <th>Name</th>
                 <th>Country</th>
                 <th>Region</th>
+                <th>Best Wine</th>
+                <th>Price</th>
             </tr>
         
         <?php 
             if ($result){
                 while ($row = $result->fetch_row()){
                     // echo var_dump($row);
-                    echo "<tr><td>" . $row[0] ."</td><td>". $row[3] ."</td><td>". $row[1] ."</td><td>". $row[2] ."</td></tr>";
+                    echo "<tr><td>" . $row[0] ."</td><td>". $row[3] ."</td><td>". $row[1] ."</td><td>". $row[2] ."</td>";
+                    $temp = $db->conn->query("SELECT COS221_Reviews.*,COS221_Wines.* FROM COS221_Reviews,COS221_Wines WHERE COS221_Reviews.WineID = COS221_Wines.WineID AND COS221_Wines.WineryID = '$row[0]' ORDER BY COS221_Reviews.Points DESC;");
+                    
+                    if($temp){
+                        $s = $temp->fetch_row();
+                        if($s){
+                            $t = $db->conn->query("SELECT * FROM COS221_Wines WHERE WineID LIKE '$s[2]';");
+                            if($t){
+                                $try = $t->fetch_row();
+                                if($try){
+                                    echo "<td>".$try[1]."</td><td>".$try[5]."</td?</tr>";
+                                }else{
+                                    echo "<td>No Reviews</td><td>No Price</td></tr>";
+                                }
+                            }else{
+                                echo "<td>No Reviews</td><td>No Price</td></tr>";
+                            }
+                            
+                        }else{
+                            echo "<td>No Reviews</td><td>No Price</td></tr>";
+                        }
+                    }else{
+                        echo "<td>No Reviews</td><td>No Price</td></tr>";
+                    }
                 }
             } else {
                 echo "<p>No results found</p>";
