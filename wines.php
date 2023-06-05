@@ -72,6 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
             <option value="Name">Name</option>
             <option value="Vinification">Vinification</option>
             <option value="Appellation">Appellation</option>
+            <option value="Vintage">Vintage</option>
         </select>
         <button id="SortPrice" type="submit" class="sort">Sort</button>
     </form>
