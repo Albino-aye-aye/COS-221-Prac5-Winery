@@ -1,19 +1,17 @@
 <?php
+require "config.php";
 Class Database{
-    public $conn;
     public static function instance() {
-        $servername = "wheatley.cs.up.ac.za";
-        $username = "u22570285";
-        $password = "O274QLGXCRJUQ73NVGWHPHPSO3CV3NDV";
-        $database = "u22570285";
         static $instance = null;
-        if($instance === null)
-            $instance = new Database($servername, $username, $password, $database);
-        return $instance; 
+        if ($instance === null) {
+            global $db_host, $db_user, $db_pass, $db_name;
+            $instance = new Database($db_host, $db_user, $db_pass, $db_name);
+        }
+        return $instance;
     }
 
-    private function __construct($servername, $username, $password, $database) {
-        $this->conn = new mysqli($servername, $username, $password, $database);
+    private function __construct($db_host, $db_user, $db_pass, $db_name) {
+        $this->conn =  $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
         if ($this->conn->connect_error){
             die("Database Connection Failed: ". $this->conn->connect_error);
         }
@@ -44,16 +42,12 @@ $db = Database::instance();
 </head>
 <body>
     <h1>Wine Sublime</h1>
-    <nav class="Navbar">
-        <div class="sidenav">
-            <ul>
-                <li><h2><a href="#" onclick="openTab(event, 'changeEmail')">Change UserID</a></h2></li>
-                <li><h2><a href="#" onclick="openTab(event, 'changePassword')">Change Password</a></h2></li>
-                <li><h2><a href="#" onclick="openTab(event, 'changeWinery')">Change Winery</a></h2></li>
-                <li><h2><a href="#" onclick="openTab(event, 'deleteAccount')">Delete Account</a></h2></li>  
-            </ul>
-        </div>
-    </nav>
+    <ul class="Navbar">
+    <li><a href="#" onclick="openTab(event, 'changeEmail')">Change UserID</a></li>
+    <li><a href="#" onclick="openTab(event, 'changePassword')">Change Password</a></li>
+    <li><a href="#" onclick="openTab(event, 'deleteAccount')">Delete Account</a></li>  
+    </ul>
+
 
     <div id="changeEmail" class="tab">
     <label for="newEmail">Enter your new UserID:</label>
@@ -93,23 +87,6 @@ $db = Database::instance();
 <div id="deleteAccount" class="tab">
     <button onclick="deleteAccount()">Delete Account</button>
 </div>
-
-
-    <script>
-        function openTab(evt, tabName) {
-            var i, tabContent, tabLinks;
-            tabContent = document.getElementsByClassName("tab");
-            for (i = 0; i < tabContent.length; i++) {
-                tabContent[i].style.display = "none";
-            }
-            tabLinks = document.getElementsByTagName("a");
-            for (i = 0; i < tabLinks.length; i++) {
-                tabLinks[i].className = "";
-            }
-            document.getElementById(tabName).style.display = "block";
-            evt.currentTarget.className = "active";
-        }
-    </script>
 
 <script>
         function openTab(evt, tabName) {
@@ -168,6 +145,10 @@ $db = Database::instance();
                     }
                 };
                 xhr.send("password=" + password1);
+
+                setTimeout(function() {
+            location.reload();
+            }, 1500);
             }
             } else {
             alert("Password should be at least 8 characters long.");
@@ -176,29 +157,7 @@ $db = Database::instance();
         alert("Passwords do not match.");
         }
 
-        setTimeout(function() {
-            location.reload();
-            }, 1500);
-        }
-
-
-        function confirmWineryChange() {
-        var winerySelect = document.getElementById("winerySelect");
-        var selectedOption = winerySelect.options[winerySelect.selectedIndex];
-        var winery = selectedOption.text;
-        if (confirm("Are you sure you want to change your associated winery?")) {
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "usersendpoint.php", true);
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    var response = xhr.responseText;
-                    alert(response);
-                }
-            };
-            xhr.send("winery=" + winery);
-            } 
-            
+        
         }
 
         function deleteAccount() {
