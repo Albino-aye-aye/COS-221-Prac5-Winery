@@ -26,11 +26,12 @@ Class Database{
 
 $db = Database::instance();
 
-$result = $db->conn->query("SELECT * FROM COS221_Wines ORDER BY Name;");
+$result = $db->conn->query("SELECT * FROM COS221_Winery ORDER BY Country;");
+$res = $db->conn->query("SELECT * FROM COS221_Winery ORDER BY Country;");
 
 if ($_SERVER["REQUEST_METHOD"] === "POST"){
     if (isset($_POST["sort"])){
-        $query = "SELECT * FROM COS221_Wines ORDER BY ".$_POST["sort"].";";
+        $query = "SELECT * FROM COS221_Winery WHERE Country LIKE '".$_POST["sort"]."';";
         $result = $db->conn->query($query);
     }
 }
@@ -40,39 +41,51 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
 <!doctype html>
 <html>
     <head>
-        <title>Wines</title>
+        <title>Search</title>
     </head>
+
+    <style>
+    body{
+        background-color: lightgreen;
+    }
+    </style>
+
 
     <body>
 
-    <form action="./wines.php" method="POST">
+    <h2>Search Wineries by Country</h2>
+    
+    <form action="./search.php" method="POST">
         <label for="sortOption">
         <select id="sortOption" name="sort">
-            <option value="Price">Price</option>
-            <option value="Name">Name</option>
-            <option value="Vinification">Vinification</option>
-            <option value="Appellation">Appellation</option>
-            <option value="Vintage">Vintage</option>
+            <option value="none" selected disabled hidden>Select a Country</option>
+            <?php 
+                if ($res){
+                    while ($r = $res->fetch_row()){
+                        // echo var_dump($row);
+                        echo "<option value =". $r[1] .">". $r[1] ."</option>";
+                    }
+                } else {
+                    echo "<p>No results found</p>";
+                }
+            ?>
         </select>
-        <button id="SortPrice" type="submit" class="sort">Sort</button>
+        <button id="SortPrice" type="submit" class="sort">Search</button>
     </form>
     <main>
         <table>
             <tr>
-            <th>WineID</th>
-            <th>Name</th>
-            <th>Vinification</th>
-            <th>Appellation</th>
-            <th>Vintage</th>
-            <th>Price</th>
-            <th>WineryID</th>
-</tr>
+                <th>WineryID</th>
+                <th>Name</th>
+                <th>Country</th>
+                <th>Region</th>
+            </tr>
         
         <?php 
             if ($result){
                 while ($row = $result->fetch_row()){
                     // echo var_dump($row);
-                    echo "<tr><td>" . $row[0] ."</td><td>". $row[1] ."</td><td>". $row[2] ."</td><td>". $row[3] ."</td><td>". $row[4] ."</td><td>". $row[5] ."</td><td>". $row[6]."</td></tr>";
+                    echo "<tr><td>" . $row[0] ."</td><td>". $row[3] ."</td><td>". $row[1] ."</td><td>". $row[2] ."</td></tr>";
                 }
             } else {
                 echo "<p>No results found</p>";

@@ -1,15 +1,20 @@
+
 var wineryID = localStorage.getItem('WineryID');
+
 
 
 // Populating Wine Names into the Remove Wine Dropdown
 function populateRemoveWineNames() {
   var xhr = new XMLHttpRequest();
+
   xhr.open('POST', 'manage_wines.php', true);
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
 
   xhr.onload = function () {
     if (xhr.status === 200) {
       var data = JSON.parse(xhr.responseText);
+
       var removeWineNameSelect = document.getElementById('removeWineName');
 
       removeWineNameSelect.innerHTML = '';
@@ -23,11 +28,13 @@ function populateRemoveWineNames() {
 
       data.forEach(function (wine) {
         var option = document.createElement('option');
+
         option.value = wine.WineID;
         option.textContent = wine.name;
         removeWineNameSelect.appendChild(option);
       });
     } else {
+
       console.error('Request failed. Status:', xhr.status);
     }
   };
@@ -71,19 +78,23 @@ addWineForm.addEventListener('submit', function (event) {
     error = true;
     addAppellation.style.backgroundColor = 'red';
     setTimeout(function () {addAppellation.style.backgroundColor = '';}, 2000);
+
     errors.push("Missing Appelation");
   }
 
   var vintageRegex = /^\d+$/;
+
   if (!vintageRegex.test(addVintage.value) || addVintage.value === '') 
   {
     error = true;
     addVintage.style.backgroundColor = 'red';
     setTimeout(function () { addVintage.style.backgroundColor = ''; }, 2000);
+
     errors.push("Vintange must be a number");
   }
 
   var priceRegex = /^\d+(\.\d{1,2})?$/;
+
   if (!priceRegex.test(addPrice.value) || addPrice.value === '') 
   {
     error = true;
@@ -108,6 +119,7 @@ window.addEventListener('DOMContentLoaded', function() {
     alert(message);
   }
 });
+
 
 
 

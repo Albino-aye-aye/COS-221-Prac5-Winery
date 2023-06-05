@@ -1,10 +1,14 @@
 <?php
+
 require 'config.php'
 
 if (isset($_POST['wineryID'])) {
+
   $wineryID = $_POST['wineryID'];
   setcookie('wineryID', $wineryID, time() + (86400 * 30), '/');
 }
+
+
 
 
 
@@ -17,7 +21,6 @@ if ($conn->connect_error) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   if (isset($_POST['wineryID']) && isset($_COOKIE['wineryID'])) {
     $wineryID = $_COOKIE['wineryID'];
-
     $stmt = $conn->prepare("SELECT WineID, name FROM COS221_Wines WHERE WineryID = ?");
     $stmt->bind_param('i', $wineryID);
     $stmt->execute();
@@ -66,6 +69,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->close();
   } 
 }
+
+
 
 $conn->close();
 ?>
