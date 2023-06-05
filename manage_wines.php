@@ -1,6 +1,6 @@
 <?php
 
-require 'config.php'
+require 'config.php';
 
 if (isset($_POST['wineryID'])) {
 
