@@ -23,4 +23,46 @@
 
 .height {
     height: 100px;
+    background-color: #A84448 !important;
+}
+
+body {
+    background-color: #F5EBEB;
+}
+
+h1 {
+    color: #867070;
+    font-size: 5rem;
+    text-align: center;
+}
+
+form > label, form > button, form > *{
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+}
+
+.btn-primary {
+    background-color: #867070;
+    border: white
+}
+
+.btn-primary:hover {
+    background-color: #E49393;
+}
+
+input {
+    outline: none !important;
+    border: none !important;
+}
+input:hover, input:focus {
+    box-shadow: 0 0 5px #867070 !important;
+}
+
+button {
+    outline: none !important;
+    border: none !important;
+}
+button:hover, button:focus {
+    box-shadow: 0 0 5px #E49393 !important;
 }

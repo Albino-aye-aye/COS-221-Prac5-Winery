@@ -43,56 +43,74 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
     </head>
 
     <style>
-    body{
-        background-color: lightgreen;
-    }
+        h1 {
+            font-size: 3em;
+            padding: 0.2em;
+        }
+        #results {
+            font-size: 2em;
+            padding: 0.2em;
+        }
     </style>
-
-
     <body>
 
     <?php require_once("header.php"); ?>
 
-    <h2>Search Wineries by Country</h2>
+
     
-    <form action="./search.php" method="POST">
-        <label for="sortOption">
-        <select id="sortOption" name="sort">
+
+    <main>
+    <h1>Search Wineries by Country</h1>
+
+    <form action="./search.php" method="POST" class="form-inline my-4">
+    <div class="form-group">
+        <div class="input-group">
+        <select id="sortOption" name="sort" class="form-control">
             <option value="none" selected disabled hidden>Select a Country</option>
             <?php 
-                if ($res){
-                    while ($r = $res->fetch_row()){
-                        // echo var_dump($row);
-                        echo "<option value =". $r[1] .">". $r[1] ."</option>";
-                    }
-                } else {
-                    echo "<p>No results found</p>";
-                }
-            ?>
-        </select>
-        <button id="SortPrice" type="submit" class="sort">Search</button>
-    </form>
-    <main>
-        <table>
-            <tr>
-                <th>WineryID</th>
-                <th>Name</th>
-                <th>Country</th>
-                <th>Region</th>
-            </tr>
-        
-        <?php 
-            if ($result){
-                while ($row = $result->fetch_row()){
-                    // echo var_dump($row);
-                    echo "<tr><td>" . $row[0] ."</td><td>". $row[3] ."</td><td>". $row[1] ."</td><td>". $row[2] ."</td></tr>";
+            if ($res) {
+                while ($r = $res->fetch_row()) {
+                echo "<option value=". $r[1] .">". $r[1] ."</option>";
                 }
             } else {
-                echo "<p>No results found</p>";
+                echo "<option disabled>No results found</option>";
             }
-        ?>
-        </table>
-    </main>
-    </body>
+            ?>
+        </select>
+        <div class="input-group-append">
+            <button id="SortPrice" type="submit" class="btn btn-primary">Search</button>
+        </div>
+        </div>
+    </div>
+    </form>
+    
+    <h1 id = "results">Search Results</h2>
+    <div class="container">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>WineryID</th>
+                        <th>Name</th>
+                        <th>Country</th>
+                        <th>Region</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php 
+                        if ($result){
+                            while ($row = $result->fetch_row()){
+                                echo "<tr><td>" . $row[0] ."</td><td>". $row[3] ."</td><td>". $row[1] ."</td><td>". $row[2] ."</td></tr>";
+                            }
+                        } else {
+                            echo "<tr><td colspan='4'><p>No results found</p></td></tr>";
+                        }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+</body>
 
 </html>

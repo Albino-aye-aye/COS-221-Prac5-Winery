@@ -8,7 +8,7 @@
 <body>
 <?php
   require_once 'header.php';
- ?>
+?>
   <div class="container">
     <br><br>
     <h1>Add New Wine</h1>
