@@ -43,28 +43,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
         <title>Wines</title>
     </head>
 
-    <style>
-    body{
-        background-color: lightblue;
-    }
-    </style>
-
-
     <body>
 
-
-    <nav class="Navbar">
-        <div class="sidenav">
-          <ul>
-            <li><h1>Wine Sublime</h1></li>
-            <li><h2>Wines</h2></li>
-            <li><h2>Wineries</h2></li>
-            <li><h2>Logout</h2></li> 
-          </ul>
-      </div>
-      </nav>
-
-    
     <form action="./wines.php" method="POST">
         <label for="sortOption">
         <select id="sortOption" name="sort">
