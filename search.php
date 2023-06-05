@@ -1,20 +1,17 @@
 <?php
-
+require "config.php";
 Class Database{
     public $conn;
     public static function instance() {
-        $servername = "wheatley.cs.up.ac.za";
-        $username = "u21455903";
-        $password = "LYHPPX352F3ITTO3DHBWIGRCPEJHCGGJ";
-        $database = "u21455903";
         static $instance = null;
         if($instance === null)
-            $instance = new Database($servername, $username, $password, $database);
+        global $db_host, $db_user, $db_pass, $db_name;
+            $instance = new Database($db_host, $db_user, $db_pass, $db_name);
         return $instance; 
     }
 
-    private function __construct($servername, $username, $password, $database) {
-        $this->conn = new mysqli($servername, $username, $password, $database);
+    private function __construct($db_host, $db_user, $db_pass, $db_name) {
+        $this->conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
         if ($this->conn->connect_error){
             die("Database Connection Failed: ". $this->conn->connect_error);
         }
