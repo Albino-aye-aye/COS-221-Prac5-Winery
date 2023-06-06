@@ -9,29 +9,6 @@ The Global Wine Store (GWS) is a worldwide organization that deals with wine pro
 
 The platform should provide users with the ability to view various wines, including their region and other pertinent information. The information should be easily filterable to allow users to find what they are looking for. Users should also be able to view various wineries/wine farms, with relevant information such as location and available wines. Verified wineries should have the ability to add new wines to their catalog. Additionally, the platform should allow users to review wines. Feel free to utilize realistic data, even if it's not provided in the specification.
 
-## Project Specification
-For this assignment, you will be using the GWS data provided by the organization to implement your practical assignment. The necessary information to populate the database and implement the project can be found in the following links:
-
-- [Sample APIs - Wines](https://sampleapis.com/wines)
-- [Kaggle - Wine Data](https://www.kaggle.com/zynicide/wine-reviews)
-- [Kaggle - Wine Reviews](https://www.kaggle.com/zynicide/wine-reviews)
-- [UCI Machine Learning Repository - Wine Quality](https://archive.ics.uci.edu/ml/datasets/wine+quality)
-- [Global Wine Score API](https://www.globalwinescore.com/)
-- [Wine81](https://www.wine81.com/)
-- [Data World - Global Wine Points](https://data.world/markpowell/global-wine-points)
-
-## Outcomes
-Upon successful completion of this assignment, you should be able to:
-
-- Analyze and understand data from multiple sources.
-- Curate the data by cleaning and extending it when necessary.
-- Design a database schema to be implemented in a relational database management system (RDBMS) for the curated data.
-- Design and build a web-based application that includes:
-  - Execution of a connection to an RDBMS from a programming language.
-  - Querying and manipulation of a relational database from a programming language.
-  - Building a Graphical User Interface (GUI).
-  - Utilizing the GUI to query and manipulate a relational database.
-
 ## Getting Started
 Follow the steps below to set up the Wine Tourism Platform on your local machine:
 
