@@ -129,6 +129,26 @@ VALUES
     ('Perle de Blauburger', 'Blauburger', 'Tokaji', '2008', 17.00, 5),
     ('Harmonie Bordeaux', 'Bordeaux-style', 'Tokaji', '2008', 37.00, 5);
 
+-- Insert User 1
+INSERT INTO COS221_User (UserID, Password, Salt, WineryID)
+VALUES ('1', '$argon2id$v=19$m=65536,t=4,p=1$d1JUOE9Sc2RKUzZGd1Q5bQ$Q78xQJfIiYP1m3ZEDTILAQqtg8DOLy2sZZFGmUCfhcw', '591c2c8b5d76dc7f669b0706e1504a3f809d3d1472d6f9447ab1e9bf77b255f1', 1);
+
+-- Insert User 2
+INSERT INTO COS221_User (UserID, Password, Salt, WineryID)
+VALUES ('2', '$argon2id$v=19$m=65536,t=4,p=1$aW9NYTNWQVIzby9iZmU3Tw$8IMOWjpNZfLSeMj9/nTrrw+tKPf1R2p+1McMW+rkEig', '9487ec18293ef84ad194cf0b5aba63857d2130274a0441ed8e83000812445203', 2);
+
+-- Insert User 3
+INSERT INTO COS221_User (UserID, Password, Salt, WineryID)
+VALUES ('3', '$argon2id$v=19$m=65536,t=4,p=1$Lk9WcmFnNVUxR3VGUFNpeg$3gpo57k9BgXVwwQnUotffgbdf9TtNq4noordWA+qoDY', 'e633c3e68cb05eb5eb0ad6ad2ddaaf381d9d5d454dfa59a940c46c3b3b9624f0', 3);
+
+-- Insert User 4
+INSERT INTO COS221_User (UserID, Password, Salt, WineryID)
+VALUES ('4', '$argon2id$v=19$m=65536,t=4,p=1$V1hLZ0hOd2ZTYllZYWt3TQ$AwioDFSu4tfZRBjDwpvtMQWWlqWSgp7HiLlj16J/BLc', '40f1aa32b0d0a5c35619da643ac392eb80782fd140d35cf930cadd9202678723', 4);
+
+-- Insert User 5
+INSERT INTO COS221_User (UserID, Password, Salt, WineryID)
+VALUES ('5', '$argon2id$v=19$m=65536,t=4,p=1$d0VjZndVczlQL1o4M2lSdQ$fL1EZdgO4gLdT41V1frqwk7p4Z0HcT+f7nS9cWnNLiI', '09afbdda8df1fc9752b050fa5ae70f0b8976bb95f2d17bfdf305bbb16a197ea9', 5);
+
 -- Create trigger to delete associated winery when a user is deleted (if WineryID is not null)
 DELIMITER $$
 CREATE TRIGGER delete_associated_winery_trigger
