@@ -1,6 +1,5 @@
 # COS-221-Prac5-Winery
 ## Wine Tourism Platform
-![Wine Tourism](wine_tourism_image.jpg)
 
 ## Introduction
 Tourism has become a significant industry in many countries, contributing to employment, economic growth, and cultural exchange. The South African Government, through the National Department of Tourism, aims to promote South Africa as a destination for tourists interested in wine tastings, considering the country's leadership in wine production. To facilitate tourism within the country and assist tourists in visiting outside destinations, the government has contracted the Global Wine Store (GWS) for a specific project.
@@ -13,8 +12,17 @@ The platform should provide users with the ability to view various wines, includ
 Follow the steps below to set up the Wine Tourism Platform on your local machine:
 
 1. Clone the repository: `git clone https://github.com/your-username/wine-tourism-platform.git`
-2. Install the required dependencies: `npm install`
-3. Set up the database by executing the SQL scripts provided in the database directory.
-4. Update the database connection details in the configuration file `config.js`.
-5. Start the application: `npm start`
-6. Access the Wine Tourism Platform in your web browser at `http://localhost:3000`.
+2. Set up the database by executing the SQL scripts provided in the database directory.
+3. Update the database connection details in the configuration file `config.js`.
+4. Start the application: Use something like xampp to localhost the web-app
+5. Access the Wine Tourism Platform in your web browser at `http://localhost/signup.html`.
+
+Contact
+
+Alec Watson u04515791@tuks.co.za
+Aren Repko u22556860@tuks.co.za
+Daniel Geerdink u21775169@tuks.co.za
+Kyle Marshall u22570285@tuks.co.za
+Matthew Pretorius u21775169@tuks.co.za
+Costa Ellinas u21455903@tuks.co.za
+Let's toast to a successful wine tourism project! 🍷🌍
