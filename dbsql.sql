@@ -1,3 +1,11 @@
+-- Create Winery table
+CREATE TABLE COS221_Winery (
+  WineryID INT PRIMARY KEY AUTO_INCREMENT,
+  Country VARCHAR(255) NOT NULL,
+  Region VARCHAR(255) NOT NULL,
+  Name VARCHAR(255) NOT NULL
+);
+
 -- Create User table
 CREATE TABLE COS221_User (
   UserID VARCHAR(255) PRIMARY KEY,
@@ -5,14 +13,6 @@ CREATE TABLE COS221_User (
   Salt VARCHAR(255) NOT NULL,
   WineryID INT NULL,
   FOREIGN KEY (WineryID) REFERENCES COS221_Winery(WineryID) ON DELETE SET NULL
-);
-
--- Create Winery table
-CREATE TABLE COS221_Winery (
-  WineryID INT PRIMARY KEY AUTO_INCREMENT,
-  Country VARCHAR(255) NOT NULL,
-  Region VARCHAR(255) NOT NULL,
-  Name VARCHAR(255) NOT NULL
 );
 
 -- Create Wines table
@@ -38,83 +38,96 @@ CREATE TABLE COS221_Reviews (
   FOREIGN KEY (WineID) REFERENCES COS221_Wines(WineID) ON DELETE CASCADE
 );
 
--- Insert into winery
-INSERT INTO COS221_Winery (WineryID, Country, Region, Name)
-VALUES (1, 'Spain', 'Catalonia', 'L''Arboc');
+INSERT INTO COS221_Winery (Country, Region, Name)
+VALUES ('Spain', 'Catalonia', 'L\'Arboc');
 
-INSERT INTO COS221_Winery (WineryID, Country, Region, Name)
-VALUES (2, 'Italy', 'Tuscany', 'Guidi 1929');
+INSERT INTO COS221_Wines (Name, Vinification, Appellation, Vintage, Price, WineryID)
+VALUES
+    ('Cuvée Élégance', 'Sparkling Blend', 'Catalonia', '1919', 13.00, 1),
+    ('Reserva de la Luna', 'Cabernet Sauvignon', 'Catalonia', '1999', 55.00, 1),
+    ('Flor de Seda', 'Garnacha', 'Catalonia', '2001', 10.00, 1),
+    ('Éxtasis Rojo', 'Red Blend', 'Catalonia', '2003', 15.00, 1),
+    ('Crianza del Sol', 'Cabernet Sauvignon-Merlot', 'Catalonia', '2003', 15.00, 1),
+    ('Perla Dorada', 'Chardonnay', 'Catalonia', '2006', 15.00, 1),
+    ('Noche Esmeralda', 'Pinot Noir', 'Catalonia', '2007', 16.00, 1),
+    ('Euforia de Girona', 'Grenache', 'Catalonia', '2007', 27.00, 1),
+    ('Rioja Dorada', 'Tempranillo', 'Catalonia', '2008', 13.00, 1),
+    ('Blanca del Mar', 'Garnacha Blanca', 'Catalonia', '2009', 15.00, 1);
 
-INSERT INTO COS221_Winery (WineryID, Country, Region, Name)
-VALUES (3, 'Portugal', 'Colares', 'Adega Viuva Gomes');
 
-INSERT INTO COS221_Winery (WineryID, Country, Region, Name)
-VALUES (4, 'France', 'Languedoc-Roussillon', 'Gérard Bertrand');
 
-INSERT INTO COS221_Winery (WineryID, Country, Region, Name)
-VALUES (5, 'Hungary', 'Tokaji', 'Royal Tokaji');
 
--- Insert data into Wines table
-INSERT INTO COS221_Wines (Name, WineID, Vinification, Appellation, Vintage,Price, WineryID)
-VALUES ('A',1, 'Sparkling Blend', 'Catalonia', 1919, 13.00, 1);
+INSERT INTO COS221_Winery (Country, Region, Name)
+VALUES ('Italy', 'Tuscany', 'Guidi 1929');
 
-INSERT INTO COS221_Wines (Name, WineID, Vinification, Appellation, Vintage,Price, WineryID)
-VALUES ('B',2, 'Cabernet Sauvignon', 'Catalonia', 1999, 55.00, 1);
+INSERT INTO COS221_Wines (Name, Vinification, Appellation, Vintage, Price, WineryID)
+VALUES
+    ('Riserva d\'Oro', 'Vernaccia', 'Tuscany', '1929', 14.00, 2),
+    ('Bianco di Sogni', 'White Blend', 'Tuscany', '1994', 140.00, 2),
+    ('Cantico del Sole', 'Sangiovese', 'Tuscany', '1995', 56.00, 2),
+    ('Segreto dell\'Amore', 'Cabernet Sauvignon', 'Tuscany', '1997', 27.00, 2),
+    ('Incanto Bordeaux', 'Bordeaux-style', 'Tuscany', '1998', 40.00, 2),
+    ('Danza dei Sensi', 'Syrah', 'Tuscany', '1998', 36.00, 2),
+    ('Abbraccio di Prugnolo', 'Prugnolo Gentile', 'Tuscany', '2001', 75.00, 2),
+    ('Serata di Toscana', 'Sangiovese Grosso', 'Tuscany', '2003', 120.00, 2),
+    ('Meraviglia di Merlot', 'Merlot', 'Tuscany', '2003', 50.00, 2),
+    ('Sinfonia di Cabernet', 'Cabernet Franc', 'Tuscany', '2004', 42.00, 2);
 
-INSERT INTO COS221_Wines (Name, WineID, Vinification, Appellation, Vintage,Price, WineryID)
-VALUES ('C',3, 'Garnacha', 'Catalonia', 2001, 10.00, 1);
 
-INSERT INTO COS221_Wines (Name, WineID, Vinification, Appellation, Vintage,Price, WineryID)
-VALUES ('D',4, 'Vernaccia', 'Tuscany', 1929, 14.00, 2);
 
-INSERT INTO COS221_Wines (Name, WineID, Vinification, Appellation, Vintage,Price, WineryID)
-VALUES ('E',5, 'White Blend', 'Tuscany', 1994, 140.00, 2);
+INSERT INTO COS221_Winery (Country, Region, Name)
+VALUES ('Portugal', 'Colares', 'Adega Viuva Gomes');
 
-INSERT INTO COS221_Wines (Name, WineID, Vinification, Appellation, Vintage,Price, WineryID)
-VALUES ('F',6, 'Sangiovese', 'Tuscany', 1995, 56.00, 2);
+INSERT INTO COS221_Wines (Name, Vinification, Appellation, Vintage, Price, WineryID)
+VALUES
+    ('Tesouro de Ramisco', 'Ramisco', 'Colares', '1934', 495.00, 3),
+    ('Encanto de Moscatel', 'Moscatel', 'Colares', '1963', 400.00, 3),
+    ('Brilho de Alvarinho', 'Alvarinho', 'Colares', '2001', 10.00, 3),
+    ('Grande Reserva Português', 'Portuguese Red', 'Douro', '2001', 84.00, 3),
+    ('Delícia de Trajadura', 'Trajadura', 'Vinho Verde', '2001', 7.00, 3),
+    ('Suave de Bual', 'Bual', 'Madeira', '2003', 50.00, 3),
+    ('Perfume Alentejano', 'Touriga Nacional', 'Alentejano', '2004', 19.00, 3),
+    ('Harmonia de Bairrada', 'Cabernet Blend', 'Bairrada', '2004', 13.00, 3),
+    ('Vinho do Sol', 'Trincadeira', 'Alentejano', '2005', 19.00, 3),
+    ('Estrela da Estremadura', 'Alicante Bouschet', 'Estremadura', '2005', 16.00, 3);
 
-INSERT INTO COS221_Wines (Name, WineID, Vinification, Appellation, Vintage,Price, WineryID)
-VALUES ('G',7, 'Ramisco', 'Colares', 1934, 495.00, 3);
 
-INSERT INTO COS221_Wines (Name, WineID, Vinification, Appellation, Vintage,Price, WineryID)
-VALUES ('H',8, 'Moscatel', 'Colares', 1963, 400.00, 3);
 
-INSERT INTO COS221_Wines (Name, WineID, Vinification, Appellation, Vintage,Price, WineryID)
-VALUES ('I',9, 'Alvarinho', 'Colares', 2001, 10.00, 3);
 
-INSERT INTO COS221_Wines (Name, WineID, Vinification, Appellation, Vintage,Price, WineryID)
-VALUES ('J',10, 'Red Blend', 'Languedoc-Roussillon', 1945, 350.00, 4);
+INSERT INTO COS221_Winery (Country, Region, Name)
+VALUES ('France', 'Languedoc-Roussillon', 'Gérard Bertrand');
 
-INSERT INTO COS221_Wines (Name, WineID, Vinification, Appellation, Vintage,Price, WineryID)
-VALUES ('K',11, 'Grenache', 'Languedoc-Roussillon', 2001, 26.00, 4);
+INSERT INTO COS221_Wines (Name, Vinification, Appellation, Vintage, Price, WineryID)
+VALUES
+    ('Élégance Rouge', 'Red Blend', 'Languedoc-Roussillon', '1945', 350.00, 4),
+    ('Essence de Grenache', 'Grenache', 'Languedoc-Roussillon', '2001', 26.00, 4),
+    ('Harmonie de Syrah', 'Syrah', 'Languedoc-Roussillon', '2001', 8.00, 4),
+    ('Mélange de Merlot', 'Merlot', 'Languedoc-Roussillon', '2001', 7.00, 4),
+    ('Charme de Chardonnay', 'Chardonnay', 'Languedoc-Roussillon', '2002', 8.00, 4),
+    ('Prestige de la Vallée', 'Rhône-style Red Blend', 'Languedoc-Roussillon', '2004', 13.00, 4),
+    ('Cœur de Carignan', 'Carignan', 'Languedoc-Roussillon', '2005', 16.00, 4),
+    ('Symphonie de Shiraz', 'Shiraz', 'Languedoc-Roussillon', '2005', 7.00, 4),
+    ('Rosée Magique', 'Rosé', 'Languedoc-Roussillon', '2007', 10.00, 4),
+    ('Harmonie de Merlot-Cabernet', 'Merlot-Cabernet Sauvignon', 'Languedoc-Roussillon', '2007', 13.00, 4);
 
-INSERT INTO COS221_Wines (Name, WineID, Vinification, Appellation, Vintage,Price, WineryID)
-VALUES ('L',12, 'Syrah', 'Languedoc-Roussillon', 2001, 8.00, 4);
 
-INSERT INTO COS221_Wines (Name, WineID, Vinification, Appellation, Vintage,Price, WineryID)
-VALUES ('M',13, 'White Blend', 'Tokaji', 1996, 77.00, 5);
 
-INSERT INTO COS221_Wines (Name, WineID, Vinification, Appellation, Vintage,Price, WineryID)
-VALUES ('N',14, 'Muscat', 'Tokaji', 2002, 20.00, 5);
 
-INSERT INTO COS221_Wines (Name, WineID, Vinification, Appellation, Vintage,Price, WineryID)
-VALUES ('O',15, 'Furmint', 'Tokaji', 2003, 764.00, 5);
+INSERT INTO COS221_Winery (Country, Region, Name)
+VALUES ('Hungary', 'Tokaji', 'Royal Tokaji');
 
--- Insert into user
-INSERT INTO COS221_User (UserID, Password, Salt, WineryID)
-VALUES ('john.doe@example.com', 'password1', 'salt1', (SELECT WineryID FROM COS221_Winery WHERE WineryID = 1));
-
-INSERT INTO COS221_User (UserID, Password, Salt, WineryID)
-VALUES ('jane.smith@gmail.com', 'password2', 'salt2', NULL);
-
-INSERT INTO COS221_User (UserID, Password, Salt, WineryID)
-VALUES ('david.wilson@company.com', 'password3', 'salt3', (SELECT WineryID FROM COS221_Winery WHERE WineryID = 3));
-
-INSERT INTO COS221_User (UserID, Password, Salt, WineryID)
-VALUES ('emily.jones123@yahoo.co.uk', 'password4', 'salt4', (SELECT WineryID FROM COS221_Winery WHERE WineryID = 4));
-
-INSERT INTO COS221_User (UserID, Password, Salt, WineryID)
-VALUES ('michael.brown34@hotmail.com', 'password5', 'salt5', (SELECT WineryID FROM COS221_Winery WHERE WineryID = 5));
+INSERT INTO COS221_Wines (Name, Vinification, Appellation, Vintage, Price, WineryID)
+VALUES
+    ('Éclat Blanc', 'White Blend', 'Tokaji', '1996', 77.00, 5),
+    ('Merveille de Muscat', 'Muscat', 'Tokaji', '2002', 20.00, 5),
+    ('Or de Furmint', 'Furmint', 'Tokaji', '2003', 764.00, 5),
+    ('Charme de Cabernet', 'Cabernet Blend', 'Tokaji', '2003', 78.00, 5),
+    ('Symphony de Cabernet Franc', 'Cabernet Franc', 'Tokaji', '2003', 75.00, 5),
+    ('Rubis de Kekfrankos', 'Kekfrankos', 'Tokaji', '2003', 28.00, 5),
+    ('Étoile de Pinot Noir', 'Pinot Noir', 'Tokaji', '2008', 25.00, 5),
+    ('Sérénité de Merlot', 'Merlot', 'Tokaji', '2008', 76.00, 5),
+    ('Perle de Blauburger', 'Blauburger', 'Tokaji', '2008', 17.00, 5),
+    ('Harmonie Bordeaux', 'Bordeaux-style', 'Tokaji', '2008', 37.00, 5);
 
 -- Create trigger to delete associated winery when a user is deleted (if WineryID is not null)
 DELIMITER $$
