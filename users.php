@@ -1,5 +1,4 @@
 <?php
-require_once("header.php");
 require_once("config.php");
 Class Database{
     public static function instance() {
@@ -34,62 +33,80 @@ $db = Database::instance();
 <!doctype html>
 <html>
 <head>
-    <title>User Update</title>
+    <?php require_once("header.php"); ?>
+
     <style>
-        .tab {
-            display: none;
+        .wineTabs {
+            color: black !important;
+        }
+
+        .centered-input-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .centered-input {
+            max-width: 300px;
+        }
+        .wineTabs {
+            color: black !important;
+        }
+
+        .nav-pills .nav-link.active.custom-tab-link {
+            background-color: #E49393;
+            color: black;
         }
     </style>
 </head>
 <body>
-    <h1>Wine Sublime</h1>
-    <ul class="Navbar">
-    <li><a class= "userman" href="#" onclick="openTab(event, 'changeEmail')">Change UserID</a></li>
-    <li><a class= "userman" href="#" onclick="openTab(event, 'changePassword')">Change Password</a></li>
-    <li><a class= "userman" href="#" onclick="openTab(event, 'deleteAccount')">Delete Account</a></li>  
-    </ul>
+    <h1 class="mt-4">Wine Sublime</h1>
+    <ul class="nav nav-pills mt-4">
+    <li class="nav-item">
+        <a class="nav-link active custom-tab-link wineTabs" data-toggle="pill" href="#changeEmail">Change UserID</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link custom-tab-link wineTabs" data-toggle="pill" href="#changePassword">Change Password</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link custom-tab-link wineTabs" data-toggle="pill" href="#deleteAccount">Delete Account</a>
+    </li>
+</ul>
 
+    <div class="tab-content mt-4">
+        <div id="changeEmail" class="tab-pane fade show active">
+            <div class="centered-input-container">
+                <label for="newEmail">Enter your new UserID:</label>
+                <input type="text" id="newEmail" class="form-control mb-2 centered-input" />
+                <button onclick="confirmEmailChange()" class="btn btn-primary centered-input">Submit</button>
+            </div>
+        </div>
 
-    <div id="changeEmail" class="tab">
-    <label for="newEmail">Enter your new UserID:</label>
-        <input type="text" id="newEmail" />
-        <button onclick="confirmEmailChange()">Submit</button>
+        <div id="changePassword" class="tab-pane fade">
+            <div class="centered-input-container">
+                <label for="password1">New Password:</label>
+                <input type="password" id="password1" class="form-control mb-2 centered-input" required>
+            </div>
+            <div class="centered-input-container">
+                <label for="password2">Confirm Password:</label>
+                <input type="password" id="password2" class="form-control mb-2 centered-input" required>
+                <button onclick="changePassword()" class="btn btn-primary centered-input">Change Password</button>
+            </div>
+
+        </div>
+
+        <div id="deleteAccount" class="tab-pane fade">
+            <div class = "centered-input-container">
+                <button onclick="deleteAccount()" class="btn btn-danger centered-input">Delete Account</button>
+            </div>
+        </div>
     </div>
 
-    <div id="changePassword" class="tab">
-    <label for="password1">New Password:</label>
-    <input type="password" id="password1" required><br>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
-    <label for="password2">Confirm Password:</label>
-    <input type="password" id="password2" required><br>
-
-    <button onclick="changePassword()">Change Password</button>
-    </div>
-
-    <div id="changeWinery" class="tab">
-    <label for="winerySelect">Select Winery:</label>
-    <select id="winerySelect">
-        <?php
-        $db = Database::instance();
-        $sql = "SELECT Name FROM COS221_Winery";
-        $result = $db->conn->query($sql);
-
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $wineryName = $row["Name"];
-                echo "<option value='$wineryName'>$wineryName</option>";
-            }
-        }
-        ?>
-    </select>
-    <button onclick="confirmWineryChange()">Confirm</button>
-</div>
-
-<div id="deleteAccount" class="tab">
-    <button onclick="deleteAccount()">Delete Account</button>
-</div>
-
-<script>
+    <script>
         function openTab(evt, tabName) {
             var i, tabContent, tabLinks;
             tabContent = document.getElementsByClassName("tab");
@@ -153,7 +170,7 @@ $db = Database::instance();
             }
             } else {
             alert("Password should be at least 8 characters long.");
-         }
+        }
         } else {
         alert("Passwords do not match.");
         }

@@ -70,7 +70,7 @@
     
 
     <div class="container">
-        <h2>Review Wine</h2>
+        <h1>Review Wine</h2>
         <form action="review.php" method="POST">
             <div class="form-group">
                 <label for="wine_name">Wine Name:</label>
