@@ -1,64 +1,98 @@
-<?php
-require_once("config.php");
-session_start();
+<!DOCTYPE html>
+<html>
 
-$error = ""; // Variable to store error message
+<head>
+    <title>Login Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Inputed username and password
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    echo $email;
+        @import url('https://fonts.googleapis.com/css2?family=Geologica&family=Roboto+Mono&display=swap');
+        * {
+            font-family: 'Geologica', sans-serif !important;
+        }
+        body {
+            background-color: #F5EBEB;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            width: 600px;
+        }
 
-    // Retrieval of salt and password from the database
-    // Salt
-    $stmt = $conn->prepare('SELECT salt FROM COS221_User WHERE UserID = ?');
-    $stmt->bind_param('s', $email);
-    $stmt->execute();
-    $stmt->bind_result($salt);
-    $stmt->fetch();
-    $stmt->close();
+        h1 {
+            color: #867070;
+            font-size: 5rem;
+        }
 
-    // Password
-    $stmt = $conn->prepare('SELECT password FROM COS221_User WHERE UserID = ?');
-    $stmt->bind_param('s', $email);
-    $stmt->execute();
-    $stmt->bind_result($dbPassword);
-    $stmt->fetch();
-    $stmt->close();
+        form > label, form > button, form > *{
+            width: 100%;
+            text-align: center;
+            justify-content: center;
+        }
 
-    $options2 = [
-        'memory_cost' => PASSWORD_ARGON2_DEFAULT_MEMORY_COST,
-        'time_cost' => PASSWORD_ARGON2_DEFAULT_TIME_COST,
-        'threads' => PASSWORD_ARGON2_DEFAULT_THREADS,
-    ];
+        .btn-primary {
+            background-color: #867070;
+            border: white
+        }
 
-    if (password_verify($password . $salt, $dbPassword)) {
-        // Password is correct
-        $current_page = $_SERVER['PHP_SELF'];
-        
-        // Check if winery is set
-        $stmt = $conn->prepare('SELECT WineryID FROM COS221_User WHERE UserID = ?');
-        $stmt->bind_param('s', $email);
-        $stmt->execute();
-        $WineryID;
-        $stmt->bind_result($WineryID);
-        $stmt->fetch();
-        $stmt->close();
-        
-        setcookie('UserID', $email, time() + (86400 * 30), '/'); // Set cookie for 30 days
-        echo "<script>";
-        echo "localStorage.setItem('WineryID', '" . addslashes($WineryID) . "');";
-        echo " window.location.href = 'wines.php';";
-        echo "</script>";
-        // header('Location: Compare.php?from=' . urlencode($current_page));
-        // exit();
-    } else {
-        $error = "Incorrect password  or email. Please try again."; // Set error message
-        echo "<script>";
-        echo "localStorage.setItem('LoginError', '" . addslashes($error) . "');";
-        echo " window.location.href = 'login.html';";
-        echo "</script>";
-    }
-}
-?>
+        .btn-primary:hover {
+            background-color: #E49393;
+        }
+        p > a {
+            color: #E49393;
+        }
+        p > a:hover {
+            color: #867070;
+        }
+
+        input {
+            outline: none !important;
+            border: none !important;
+        }
+        input:hover, input:focus {
+            box-shadow: 0 0 5px #867070 !important;
+        }
+
+        button {
+            outline: none !important;
+            border: none !important;
+        }
+        button:hover, button:focus {
+            box-shadow: 0 0 5px #E49393 !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="mt-5">Login</h1>
+        <form action="login.php" method="post" class="mt-4">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+        <p class="mt-3">Don't have an account? <a href="signup.html">Sign up</a></p>
+    </div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>
+       
+        const error = localStorage.getItem('LoginError');
+
+        if (error) {  
+            alert(error);
+            localStorage.removeItem('LoginError');
+        }
+		
+    </script>
+</body>
+
+</html>
