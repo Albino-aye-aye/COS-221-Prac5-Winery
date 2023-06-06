@@ -25,7 +25,7 @@
 
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $userID = $_COOKIE['userID'];
+        $userID = $_COOKIE['UserID'];
         $wineName = $_POST['wine_name'];
         $rating = $_POST['rating'];
         $reviewText = $_POST['review'];
