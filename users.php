@@ -61,6 +61,19 @@ $db = Database::instance();
     </style>
 </head>
 <body>
+    <script>	
+       	
+           const error = localStorage.getItem('ChangeEmailError');	
+           const error2 = localStorage.getItem('ChangePasswordError');	
+           if (error) {  	
+               alert(error);	
+               localStorage.removeItem('ChangeEmailError');	
+           }	
+           if(error2){	
+               alert(error2);	
+               localStorage.removeItem('ChangePasswordError');	
+           }	
+   </script>
     <h1 class="mt-4">Wine Sublime</h1>
     <ul class="nav nav-pills mt-4">
     <li class="nav-item">
